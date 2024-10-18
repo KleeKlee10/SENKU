@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Lịch Sử Kết Quả</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Lịch Sử Nhập Kết Quả</h1>
+    <table>
+        <tr>
+            <th>STT</th>
+            <th>Tên Môn Học</th>
+            <th>Điểm (Hệ 10)</th>
+            <th>Số Tín Chỉ</th>
+            <th>Điểm Chữ</th>
+            <th>Điểm Hệ 4</th>
+            <th>Điểm Trung Bình (Hệ 10)</th>
+            <th>Điểm Hệ 4</th>
+            <th>Loại Sinh Viên</th>
+        </tr>
+        {% for index, entry in enumerate(history_data) %}
+        <tr>
+            <td>{{ index + 1 }}</td>
+            <td>{{ entry.ten_mon_hoc }}</td>
+            <td>{{ entry.diem }}</td>
+            <td>{{ entry.tin_chi }}</td>
+            <td>{{ entry.diem_chus }}</td>
+            <td>{{ entry.diem_he_4_list }}</td>
+            <td>{{ entry.diem_trung_binh_he_10 }}</td>
+            <td>{{ entry.diem_trung_binh_he_4 }}</td>
+            <td>{{ entry.loai_hoc_luc }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">Quay lại</a>
+</body>
+</html>

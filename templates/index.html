@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhập Thông Tin Môn Học</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px; /* Chiều rộng của khung */
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF; /* Màu xanh nước biển cho tiêu đề bảng */
+            color: white;
+        }
+
+        input[type="text"], input[type="number"] {
+            width: 90%; /* Chiếm gần hết chiều rộng */
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50; /* Màu xanh lá */
+            color: white;
+            border: none;
+            border-radius: 20px; /* Đổi radius thành 20px để tròn góc */
+            cursor: pointer;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif; /* Thay đổi font chữ cho nút */
+            transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between; /* Sắp xếp nút về hai bên */
+            margin-top: 20px; /* Khoảng cách trên nút */
+        }
+
+        .calculate-button {
+            background-color: red; /* Đổi màu nút Tính Toán thành đỏ */
+            color: white;
+            border-radius: 20px; /* Đổi radius thành 20px để tròn góc */
+        }
+
+        .calculate-button:hover {
+            background-color: darkred; /* Màu khi hover */
+        }
+
+        .history-button {
+            background-color: #0056b3; /* Màu xanh nước biển cho nút Lịch Sử */
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 20px; /* Đổi radius thành 20px để tròn góc */
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .history-button:hover {
+            background-color: #004494; /* Màu khi hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Nhập Thông Tin Môn Học</h1>
+        <form method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Tên Môn Học</th>
+                        <th>Điểm (0-10)</th>
+                        <th>Số Tín Chỉ</th>
+                    </tr>
+                </thead>
+                <tbody id="course-list">
+                    <tr>
+                        <td>1</td>
+                        <td><input type="text" name="course_name" required></td>
+                        <td><input type="number" name="score" step="0.1" required></td>
+                        <td><input type="number" name="credits" required></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="button-container">
+                <button type="button" onclick="addCourse()">Thêm Môn Học</button>
+                <input type="submit" value="Tính Toán" class="calculate-button">
+                <a href="/history" class="history-button">Lịch Sử</a> <!-- Nút lịch sử -->
+            </div>
+        </form>
+    </div>
+
+    <script>
+        let courseCount = 1; // Biến đếm số môn học
+
+        function addCourse() {
+            courseCount++;
+            const courseList = document.getElementById('course-list');
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${courseCount}</td>
+                <td><input type="text" name="course_name" required></td>
+                <td><input type="number" name="score" step="0.1" required></td>
+                <td><input type="number" name="credits" required></td>
+            `;
+            courseList.appendChild(newRow);
+        }
+    </script>
+</body>
+</html>
